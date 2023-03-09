@@ -1,10 +1,46 @@
 import { MainImage, ShadowBg } from 'components/common';
+import { useListenMobileScreen } from 'hooks/useListenMobileView';
 import styled from 'styled-components';
 import { COLORs, gradient_colors } from 'utils/colors';
 
 const DuckieImageFoote = () => <MainImage style={{ width: 200 }} src="images/DUCKIE_13.png" />;
 
 const Roadmap = () => {
+  const isMobile = useListenMobileScreen(768);
+
+  const ListLeft = () => (
+    <>
+      {leftList.map((item, idx: number) => {
+        return (
+          <CardRoadmap key={idx}>
+            <h5 className="label">{item?.label}</h5>
+            <ul className="content">
+              {item.childs.map((childItem, idx: number) => {
+                return <li key={idx}>{childItem}</li>;
+              })}
+            </ul>
+          </CardRoadmap>
+        );
+      })}
+    </>
+  );
+  const ListRight = () => (
+    <>
+      {rightList.map((item, idx: number) => {
+        return (
+          <CardRoadmap key={idx}>
+            <h5 className="label">{item?.label}</h5>
+            <ul className="content">
+              {item.childs.map((childItem, idx: number) => {
+                return <li key={idx}>{childItem}</li>;
+              })}
+            </ul>
+          </CardRoadmap>
+        );
+      })}
+    </>
+  );
+
   return (
     <RoadmapWrapper>
       <div className="container">
@@ -16,58 +52,44 @@ const Roadmap = () => {
         </DuckieFootTop>
         <div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ display: 'inline-block', maxWidth: 992, padding: '100px 0' }}>
+            <div className="roadmap-label">
               <MainImage src="images/TEXT_DUCKIE_ROADMAP.png" />
             </div>
             <div className="phrase-text">
               <strong>Phase 1:</strong> <span>The Beginning of Dackity</span>
             </div>
           </div>
-          <div style={{ marginTop: 75 }}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 150 }}>
-              <div>
-                <div className="card-wrapper">
-                  {leftList.map((item, idx: number) => {
-                    return (
-                      <CardRoadmap key={idx} data-aos="fade-right">
-                        <h5 className="label">{item?.label}</h5>
-                        <ul className="content">
-                          {item.childs.map((childItem, idx: number) => {
-                            return <li key={idx}>{childItem}</li>;
-                          })}
-                        </ul>
-                      </CardRoadmap>
-                    );
-                  })}
+          {isMobile ? (
+            <div className="card-wrapper">
+              <ListLeft />
+              <ListRight />
+            </div>
+          ) : (
+            <div style={{ marginTop: 75 }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 150 }}>
+                <div>
+                  <div className="card-wrapper">
+                    <ListLeft />
+                  </div>
                 </div>
-              </div>
-              <LineCenter data-aos="flip-right">
-                <div className="line">
-                  <div className="dot left-dot" />
-                  <div className="dot" />
-                  <div className="dot left-dot" />
-                  <div className="dot" />
-                  <div className="dot" />
-                </div>
-              </LineCenter>
-              <div>
-                <div className="card-wrapper">
-                  {rightList.map((item, idx: number) => {
-                    return (
-                      <CardRoadmap key={idx} data-aos="fade-left">
-                        <h5 className="label">{item?.label}</h5>
-                        <ul className="content">
-                          {item.childs.map((childItem, idx: number) => {
-                            return <li key={idx}>{childItem}</li>;
-                          })}
-                        </ul>
-                      </CardRoadmap>
-                    );
-                  })}
+                <LineCenter>
+                  <div className="line">
+                    <div className="dot left-dot" />
+                    <div className="dot" />
+                    <div className="dot left-dot" />
+                    <div className="dot" />
+                    <div className="dot" />
+                  </div>
+                </LineCenter>
+                <div>
+                  <div className="card-wrapper">
+                    <ListRight />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
+
           <PharaseTags>
             <div className="phrase-text" data-aos="fade-up">
               <strong>Phase 2:</strong> <span>Dackity Hacking</span>
@@ -76,9 +98,12 @@ const Roadmap = () => {
               <HackingFlex>
                 {tagsList.map((text, idx: number) => {
                   return (
-                    <div key={idx} data-aos="fade-up">
+                    <div key={idx} data-aos="fade-up" className="item">
                       <HackingItem>
-                        <MainImage style={{ width: 20 }} src="images/DUCKIE_1.png" />
+                        <div className="img-wrapper">
+                          {' '}
+                          <MainImage style={{ width: 20 }} src="images/DUCKIE_1.png" />
+                        </div>
                         <span className="text">{text}</span>
                       </HackingItem>
                     </div>
@@ -88,7 +113,6 @@ const Roadmap = () => {
             </div>
           </PharaseTags>
         </div>
-
         <DuckieFootBottom>
           <DuckieImageFoote />
         </DuckieFootBottom>
@@ -124,6 +148,19 @@ const HackingFlex = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    justify-content: space-between;
+    .item {
+      width: 100%;
+    }
+    .img-wrapper {
+      img {
+        width: 35px !important;
+      }
+    }
+  }
 `;
 const HackingItem = styled.div`
   display: flex;
@@ -186,14 +223,20 @@ const CardRoadmap = styled.div`
     font-size: 18px;
     line-height: 24px;
   }
+  @media screen and (max-width: 768px) {
+    padding: 0 15px;
+  }
 `;
 
 const RoadmapWrapper = styled.section`
   position: relative;
-
+  .roadmap-label {
+    display: inline-block;
+    max-width: 992px;
+    padding: 100px 0;
+  }
   .phrase-text {
     font-size: 32px;
-    font-weight: 300;
     text-align: center;
     padding: 20px 0;
   }
@@ -245,6 +288,17 @@ const RoadmapWrapper = styled.section`
     align-items: center;
     justify-content: center;
     height: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+    .roadmap-label {
+      max-width: 250px;
+      padding: 25px 0;
+    }
+    .phrase-text {
+      font-size: 18px;
+      padding: 24px 0 50px 0;
+    }
   }
 `;
 

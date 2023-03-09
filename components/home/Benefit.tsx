@@ -1,15 +1,20 @@
 import { MainImage, ShadowBg } from 'components/common';
+import { useListenMobileScreen } from 'hooks/useListenMobileView';
 import React from 'react';
 import styled from 'styled-components';
 import { COLORs } from 'utils/colors';
 
 const Benefit = () => {
+  const isMobile = useListenMobileScreen(768);
+
+  const textSrc = isMobile ? 'images/TEXT_DUCKIE_BENEFIT_MOBILE.png' : 'images/TEXT_DUCKIE_BENEFIT.png';
+
   return (
     <BenefitWrapper>
       <ShadowBg style={{ right: '-200px', top: '-10%', width: 400, height: 400 }} />
       <div className="container" style={{ textAlign: 'center' }}>
         <div style={{ display: 'inline-block', maxWidth: 992, marginBottom: 50 }} data-aos="fade-right">
-          <MainImage src="images/TEXT_DUCKIE_BENEFIT.png" />
+          <MainImage src={textSrc} />
         </div>
         <div>
           <div className="list" data-aos="fade-left">
@@ -25,6 +30,21 @@ const Benefit = () => {
             })}
           </div>
         </div>
+        <div className="description">
+          <p className="duck-class">
+            {isMobile ? (
+              <>
+                Everyone will buy <u className="hight-light">DACKIE</u>, but the timing of the purchase will
+                <u className="hight-light"> decide</u> who you are going to be...
+              </>
+            ) : (
+              <>
+                Everyone will buy <u className="hight-light">DACKIE</u>, but the timing of the <br /> purchase will
+                <u className="hight-light"> decide</u> who you are going to be...
+              </>
+            )}
+          </p>
+        </div>
       </div>
     </BenefitWrapper>
   );
@@ -36,10 +56,12 @@ const BenefitWrapper = styled.section`
   padding: 300px 0 100px 0;
   position: relative;
   z-index: 2;
+  overflow: hidden;
   .list {
     display: flex;
     justify-content: center;
     gap: 25px;
+    flex-wrap: wrap;
     .item {
       flex: 1;
       max-width: 350px;
@@ -64,6 +86,20 @@ const BenefitWrapper = styled.section`
     background: linear-gradient(180deg, rgba(255, 230, 0, 0) 0%, #ffe600 100%);
     z-index: -1;
     opacity: 0.1;
+    left: 0;
+  }
+  .description {
+    padding: 24px 0 0 0;
+    .hight-light {
+      color: ${COLORs.YELLOW};
+    }
+    .duck-class {
+      letter-spacing: 4px;
+      font-size: 24px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 60px 10px 15px;
   }
 `;
 

@@ -1,11 +1,15 @@
+/* eslint-disable react/no-unescaped-entities */
 import { DuckieMini, MainImage } from 'components/common';
 import AppNavbarHeader from 'components/Header';
+import { useListenMobileScreen } from 'hooks/useListenMobileView';
 import React from 'react';
 import styled from 'styled-components';
 
 const duckieGif = 'images/DUCKIE_GIF.gif';
 
 const Banner = () => {
+  const isMobile = useListenMobileScreen(768);
+
   return (
     <BannerWrapper>
       <AppNavbarHeader />
@@ -19,20 +23,12 @@ const Banner = () => {
       </DuckieMini>
       <div className="container wapper">
         <div className="content flex-1">
-          <div style={{ maxWidth: 500, marginBottom: 20 }} data-aos="fade-right">
+          <div className="dackity-welcome" data-aos="fade-right">
             <MainImage src="images/TEXT_DUCKITY.png" />
           </div>
-          <p>
-            {`Dackie is a dope meme digital arts that represents the \nchilled-out, don't-give-a-f*ck attitude of a lazy duck. With\nits lazy-ass eyes and smirking mouth, Dackie is a symbol\nof apathy and laziness in modern life.`}
-          </p>
-          <div
-            style={{
-              position: 'absolute',
-              right: '-20%',
-              top: '50%',
-            }}
-          >
+          <div className="to-the-moon">
             <div
+              className="flex-to-the-moon"
               style={{
                 display: 'flex',
                 gap: 5,
@@ -47,10 +43,14 @@ const Banner = () => {
               </div>
             </div>
           </div>
+          <p>
+            Dackie is a dope meme digital arts that represents the chilled-out, don't-give-a-f*ck attitude of a lazy
+            duck. With its lazy-ass eyes and smirking mouth, Dackie is a symbol of apathy and laziness in modern life.
+          </p>
         </div>
         <div className="img-gif flex-1">
           <div data-aos="fade-left" className="wrapp-on-hover">
-            <MainImage src={duckieGif} />
+            <MainImage style={{ maxWidth: isMobile ? 300 : '100%' }} src={duckieGif} />
             <div className="chat-box">
               <div data-aos="fade-right">
                 <MainImage src="images/CHATBOX.png" style={{ maxWidth: 100 }} />
@@ -123,6 +123,7 @@ const BannerWrapper = styled.section`
     white-space: pre-wrap;
     line-height: 25px;
     font-weight: normal;
+    /* text-align: center; */
   }
   .chat-box {
     display: none;
@@ -142,5 +143,38 @@ const BannerWrapper = styled.section`
   }
   .content {
     position: relative;
+  }
+  .dackity-welcome {
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  .to-the-moon {
+    position: absolute;
+    right: -20%;
+    top: 50%;
+    .flex-to-the-moon {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 5px 15px 0 15px;
+    .dackity-welcome {
+      max-width: 275px;
+      margin: 20px auto;
+    }
+    .to-the-moon {
+      position: relative;
+      padding: 10px 0;
+      z-index: 20;
+    }
+    p {
+      text-align: center;
+    }
+    .img-gif {
+      width: 100%;
+    }
   }
 `;

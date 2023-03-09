@@ -23,11 +23,11 @@ const Duckie = () => {
             <MainImage src={duckier} />
           </div>
           <div className="flex-item" data-aos="fade-left">
-            <div style={{ maxWidth: 400, display: 'inline-block', marginBottom: 10 }}>
-              <MainImage src="images/TEXT_DUCKIE_2.png" />
-            </div>
             <div>
               <div className="duckie-tag">
+                <div className="duckie-text">
+                  <MainImage src="images/TEXT_DUCKIE_2.png" />
+                </div>
                 {duckierItem.map((item: string, idx: number) => {
                   return (
                     <div className="duckie-item" key={idx}>
@@ -90,9 +90,29 @@ const DuckieWrapper = styled.section`
   }
   .flex-item {
     flex: 1;
-
-    @media screen and (max-width: 768px) {
+  }
+  .duckie-text {
+    max-width: 400px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 20px 15px;
+    .flex-item {
       flex: unset;
+    }
+    .duckie-text {
+      max-width: 275px;
+    }
+    .duckie-tag {
+      align-items: center;
+      .img-wrapper {
+        width: 75px;
+        height: auto;
+      }
+    }
+    .duckie-item {
+      padding: 10px;
     }
   }
 `;

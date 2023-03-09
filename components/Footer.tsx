@@ -1,32 +1,44 @@
 import { Input } from 'antd';
+import { useListenMobileScreen } from 'hooks/useListenMobileView';
 import styled from 'styled-components';
 import { COLORs } from 'utils/colors';
 import { MainImage, SocialList } from './common';
 
 const Footer = () => {
+  const isMobile = useListenMobileScreen(768);
+  const logoMobile = isMobile ? 'images/TEXT_DUCKIE_FOOTER_LOGO_MOBILE.png' : 'images/TEXT_DUCKIE_FOOTER_LOGO.png';
+  const templateMobile = isMobile ? 'images/DUCKIE_EMAIL_TEMPLATE_MOBILE.png' : 'images/DUCKIE_EMAIL_TEMPLATE.png';
+
+  const imgSize = isMobile ? 50 : 40;
+
+  const flexStyle = isMobile ? 'space-evenly' : 'flex-end';
   return (
     <Wrapper>
       <div className="container">
         <div className="flex-block">
           <div className="block">
             <div className="email-wrapper">
-              <MainImage style={{}} src="images/DUCKIE_EMAIL_TEMPLATE.png" />
+              <MainImage src={templateMobile} />
               <div className="input-overlay">
                 <Input />
               </div>
             </div>
           </div>
-          <div className="block">
+          <div className="block logo-order">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 25 }}>
-              <MainImage style={{ maxWidth: 255 }} src="images/TEXT_DUCKIE_FOOTER_LOGO.png" />
+              <MainImage style={{ maxWidth: 255 }} src={logoMobile} />
             </div>
           </div>
           <div className="block">
             <div style={{ textAlign: 'right' }}>
-              <SocialList width={40} height={40} style={{ justifyContent: 'flex-end', marginBottom: 10 }} />
-              <div className="footer-text copy-right">© 2023 Dackie Labs LLC</div>
-              <div className="footer-text text-yellow">Dackie & Conditions</div>
-              <div className="footer-text text-yellow">Dackie & Conditions</div>
+              <SocialList width={imgSize} height={imgSize} style={{ justifyContent: flexStyle, marginBottom: 10 }} />
+              <div className={isMobile ? 'mobile-flex' : ''}>
+                <div className="footer-text copy-right">© 2023 Dackie Labs LLC</div>
+                <div>
+                  <div className="footer-text text-yellow">Dackie & Conditions</div>
+                  <div className="footer-text text-yellow">Dackie & Conditions</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -91,5 +103,29 @@ const Wrapper = styled.div`
 
   .text-yellow {
     color: ${COLORs.YELLOW};
+  }
+  .mobile-flex {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+    .logo-order {
+      order: -1;
+    }
+    .flex-block {
+      flex-direction: column;
+    }
+    .block {
+      &:last-child {
+        order: 3;
+      }
+    }
+    .email-wrapper {
+      padding-right: unset !important;
+    }
   }
 `;

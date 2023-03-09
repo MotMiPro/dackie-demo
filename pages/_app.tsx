@@ -11,10 +11,12 @@ import { ConfigProvider } from 'antd';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import StateContextProvider from 'context/StateContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     AOS.init({
+      disable: false,
       duration: 500,
       offset: 20, // offset (in px) from the original trigger point
       once: true, // whether animation should happen only once - while scrolling down
@@ -32,11 +34,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         },
       }}
     >
-      <BGApp>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </BGApp>
+      <StateContextProvider>
+        <BGApp>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </BGApp>
+      </StateContextProvider>
     </ConfigProvider>
   );
 }

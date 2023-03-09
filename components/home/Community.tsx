@@ -11,7 +11,7 @@ const Community = () => {
         <div className="main" />
       </DuckieMini>
       <div className="container" style={{ textAlign: 'center' }}>
-        <div style={{ display: 'inline-block', marginBottom: 50, maxWidth: 768 }} data-aos="fade-zoom-in-down">
+        <div className="community-label" data-aos="fade-zoom-in-down">
           <MainImage src="images/TEXT_DUCKIE_COMMUNITY.png" />
         </div>
         <div>
@@ -54,6 +54,17 @@ const CommunityWrapper = styled.section`
     font-size: 42px;
     margin: 24px 0;
   }
+  .community-label {
+    display: inline-block;
+    margin-bottom: 50px;
+    max-width: 768px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 10px 15px;
+    .community-label {
+      margin-bottom: 25px;
+    }
+  }
 `;
 
 const WrapperContent = styled.div`
@@ -66,6 +77,7 @@ const WrapperContent = styled.div`
   text-align: left;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   .img-wrapper {
     flex: 2;
   }
@@ -77,5 +89,15 @@ const WrapperContent = styled.div`
     font-size: 21px;
     line-height: 28px;
     font-weight: lighter;
+  }
+  @media screen and (max-width: 768px) {
+    height: 100%;
+    .content {
+      flex: unset;
+      padding: 0 15px;
+    }
+    li {
+      font-size: 16px;
+    }
   }
 `;
