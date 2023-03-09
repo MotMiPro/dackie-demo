@@ -26,7 +26,9 @@ const Footer = () => {
           </div>
           <div className="block logo-order">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 25 }}>
-              <MainImage style={{ maxWidth: 255 }} src={logoMobile} />
+              <a href="#home">
+                <MainImage style={{ maxWidth: 255 }} src={logoMobile} />
+              </a>
             </div>
           </div>
           <div className="block">

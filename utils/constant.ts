@@ -2,7 +2,7 @@ export const MENU_LIST = [
   {
     text: 'Home',
     href: '/',
-    idElement: '#',
+    idElement: '#home',
   },
   {
     text: 'about us',

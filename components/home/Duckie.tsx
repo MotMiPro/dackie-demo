@@ -7,7 +7,7 @@ const duckieTag = '/images/DUCKIE_1.png';
 
 const Duckie = () => {
   return (
-    <DuckieWrapper>
+    <DuckieWrapper id="dackity">
       <DuckieMini style={{ top: '100px', left: '-150px', opacity: '0.4' }}>
         <div className="main" />
       </DuckieMini>

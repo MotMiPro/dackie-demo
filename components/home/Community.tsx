@@ -6,7 +6,7 @@ const landscapeImg = 'images/DUCKIE_3.png';
 
 const Community = () => {
   return (
-    <CommunityWrapper>
+    <CommunityWrapper id="about-us">
       <DuckieMini style={{ top: '50%', left: '-250px' }}>
         <div className="main" />
       </DuckieMini>

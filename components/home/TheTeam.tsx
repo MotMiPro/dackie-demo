@@ -9,7 +9,7 @@ const TheTeam = () => {
   const maxWidthCard = isMobile ? 290 : 360;
   const marginTop = isMobile ? 50 : 300;
   return (
-    <TeamWrappert>
+    <TeamWrappert id="team">
       <div className="container" style={{ textAlign: 'center' }}>
         <div style={{ display: 'inline-block', maxWidth: 992 }}>
           <MainImage src="images/TEXT_DUCKIE_THETEAM.png" />

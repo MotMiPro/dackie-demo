@@ -118,11 +118,13 @@ const AppNavbarHeader = () => {
 
 export default AppNavbarHeader;
 
-const NavItem = ({ text, href, active }: { text: string; href: string; active: boolean }) => {
+const NavItem = ({ text, active, idElement }: { text: string; active: boolean; idElement: string }) => {
   return (
-    <Link href={href}>
-      <a className={`nav__item ${active ? 'active' : ''} duck-class`}>{text}</a>
-    </Link>
+    <span>
+      <a href={idElement} className={`nav__item ${active ? 'active' : ''} duck-class`}>
+        {text}
+      </a>
+    </span>
   );
 };
 

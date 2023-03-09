@@ -11,7 +11,7 @@ const Banner = () => {
   const isMobile = useListenMobileScreen(768);
 
   return (
-    <BannerWrapper>
+    <BannerWrapper id="home">
       <AppNavbarHeader />
       <DuckieMini>
         <div className="main">

@@ -42,7 +42,7 @@ const Roadmap = () => {
   );
 
   return (
-    <RoadmapWrapper>
+    <RoadmapWrapper id="roadmap">
       <div className="container">
         <DuckieFootTop>
           <DuckieImageFoote />
