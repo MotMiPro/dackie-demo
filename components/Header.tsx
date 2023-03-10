@@ -42,7 +42,6 @@ const AppNavbarHeader = () => {
             setActiveIdx(idx);
           }}
           key={menu.text}
-          className="item"
         >
           <NavItem active={activeIdx === idx} {...menu} />
         </div>
@@ -121,7 +120,7 @@ export default AppNavbarHeader;
 const NavItem = ({ text, active, idElement }: { text: string; active: boolean; idElement: string }) => {
   return (
     <span>
-      <a href={idElement} className={`nav__item ${active ? 'active' : ''} duck-class`}>
+      <a href={idElement} className={`item ${active ? 'active' : ''} duck-class`}>
         {text}
       </a>
     </span>
