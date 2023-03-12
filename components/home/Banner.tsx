@@ -43,7 +43,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-          <p>
+          <p className="duck-class">
             Dackie is a dope meme digital arts that represents the chilled-out, don't-give-a-f*ck attitude of a lazy
             duck. With its lazy-ass eyes and smirking mouth, Dackie is a symbol of apathy and laziness in modern life.
           </p>
@@ -121,9 +121,9 @@ const BannerWrapper = styled.section`
   }
   p {
     white-space: pre-wrap;
-    line-height: 25px;
-    font-weight: normal;
-    /* text-align: center; */
+    /* line-height: 25px;
+    font-weight: normal; */
+    font-size: 28px;
   }
   .chat-box {
     display: none;

@@ -2,6 +2,7 @@ import 'styles/globals.scss';
 // import 'styles/header.scss';
 // import 'styles/home-page.scss';
 // import 'styles/responsive.scss';
+import 'styles/community.scss';
 
 import type { AppProps } from 'next/app';
 import Layout from 'components/Layout';

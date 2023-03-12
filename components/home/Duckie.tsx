@@ -35,7 +35,7 @@ const Duckie = () => {
                         <div className="img-wrapper">
                           <MainImage src={duckieTag} />
                         </div>
-                        <span className="text">{item}</span>
+                        <span className="text duck-class">{item}</span>
                       </div>
                     </div>
                   );
@@ -85,8 +85,8 @@ const DuckieWrapper = styled.section`
   }
   .text {
     white-space: pre-wrap;
-    line-height: 20px;
     text-align: left;
+    font-size: 20px;
   }
   .flex-item {
     flex: 1;

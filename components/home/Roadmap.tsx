@@ -16,7 +16,11 @@ const Roadmap = () => {
             <h5 className="label">{item?.label}</h5>
             <ul className="content">
               {item.childs.map((childItem, idx: number) => {
-                return <li key={idx}>{childItem}</li>;
+                return (
+                  <li className="duck-class" key={idx}>
+                    {childItem}
+                  </li>
+                );
               })}
             </ul>
           </CardRoadmap>
@@ -32,7 +36,11 @@ const Roadmap = () => {
             <h5 className="label">{item?.label}</h5>
             <ul className="content">
               {item.childs.map((childItem, idx: number) => {
-                return <li key={idx}>{childItem}</li>;
+                return (
+                  <li className="duck-class" key={idx}>
+                    {childItem}
+                  </li>
+                );
               })}
             </ul>
           </CardRoadmap>
@@ -56,7 +64,8 @@ const Roadmap = () => {
               <MainImage src="images/TEXT_DUCKIE_ROADMAP.png" />
             </div>
             <div className="phrase-text">
-              <strong>Phase 1:</strong> <span>The Beginning of Dackity</span>
+              <strong className="duck-class">Phase I:</strong>{' '}
+              <span className="duck-class">The Beginning of Dackity</span>
             </div>
           </div>
           {isMobile ? (
@@ -92,7 +101,7 @@ const Roadmap = () => {
 
           <PharaseTags>
             <div className="phrase-text" data-aos="fade-up">
-              <strong>Phase 2:</strong> <span>Dackity Hacking</span>
+              <strong className="duck-class">Phase II:</strong> <span className="duck-class">Dackity Hacking</span>
             </div>
             <div>
               <HackingFlex>
@@ -104,7 +113,7 @@ const Roadmap = () => {
                           {' '}
                           <MainImage style={{ width: 20 }} src="images/DUCKIE_1.png" />
                         </div>
-                        <span className="text">{text}</span>
+                        <span className="text duck-class">{text}</span>
                       </HackingItem>
                     </div>
                   );
@@ -174,7 +183,7 @@ const HackingItem = styled.div`
   .text {
     white-space: nowrap;
     color: ${COLORs.YELLOW};
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 600;
   }
 `;
@@ -207,6 +216,9 @@ const CardRoadmap = styled.div`
     &::before {
       left: 0;
     }
+    .duck-class {
+      font-size: 24px;
+    }
   }
   h5 {
     background-color: ${COLORs.YELLOW};
@@ -220,7 +232,6 @@ const CardRoadmap = styled.div`
   }
 
   li {
-    font-size: 18px;
     line-height: 24px;
   }
   @media screen and (max-width: 768px) {
@@ -236,9 +247,11 @@ const RoadmapWrapper = styled.section`
     padding: 100px 0;
   }
   .phrase-text {
-    font-size: 32px;
     text-align: center;
     padding: 20px 0;
+    .duck-class {
+      font-size: 42px;
+    }
   }
   .line {
     height: 100%;
@@ -320,17 +333,17 @@ const leftList = [
   },
   {
     label: 'January 2024',
-    childs: ['  Upgrade Community Structure', 'Onboard Gen 3 Dackiers'],
+    childs: ['  Upgrade Community Structure', 'Onboard Gen III Dackiers'],
   },
 ];
 const rightList = [
   {
     label: 'April 2023',
-    childs: [`Marketing, Growth community Plan`, `Onboard Gen 1 Dackiers`],
+    childs: [`Marketing, Growth community Plan`, `Onboard Gen I Dackiers`],
   },
   {
     label: 'October 2023',
-    childs: [' Launch Voting Machenism', 'Onboard Gen 2 Dackiers', 'Games Tournament'],
+    childs: [' Launch Voting Machenism', 'Onboard Gen II Dackiers', 'Games Tournament'],
   },
 ];
 

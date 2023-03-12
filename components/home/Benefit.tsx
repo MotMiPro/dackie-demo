@@ -24,7 +24,7 @@ const Benefit = () => {
                   <div className="img-wrapper" style={{ backgroundColor: item?.color_code }}>
                     <MainImage style={{ width: 275 }} src={item?.src} />
                   </div>
-                  <p className="text">{item?.text}</p>
+                  <p className="text duck-class">{item?.text}</p>
                 </div>
               );
             })}
@@ -75,6 +75,7 @@ const BenefitWrapper = styled.section`
       margin-top: 15px;
       text-align: center;
       white-space: pre-wrap;
+      font-size: 28px;
     }
   }
   &::after {
@@ -94,7 +95,6 @@ const BenefitWrapper = styled.section`
       color: ${COLORs.YELLOW};
     }
     .duck-class {
-      letter-spacing: 4px;
       font-size: 24px;
     }
   }
@@ -115,7 +115,7 @@ const benefitList = [
     color_code: COLORs.YELLOW_LESS,
   },
   {
-    text: `Receive rewards\n(NFTs, tokens, WL, etc.)`,
+    text: `Receive rewards`,
     src: '/images/DUCKIE_7.png',
     color_code: COLORs.SKY_LESS,
   },

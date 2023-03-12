@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { MainImage } from 'components/common';
 import { useListenMobileScreen } from 'hooks/useListenMobileView';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const duckieCollection = 'images/DUCKIE_4.png';
@@ -10,13 +10,32 @@ const Collection = () => {
   const isMobile = useListenMobileScreen(768);
 
   const collectImgWidth = isMobile ? 125 : 230;
+
+  useEffect(() => {
+    const slideContainer = document.querySelector('.slide_1');
+    let counter = 6;
+    if (slideContainer) {
+      setInterval(() => {
+        const newImage = document.createElement('img');
+        newImage.src = `/images/DUCKIE_4.png`;
+        slideContainer.appendChild(newImage);
+
+        if (counter === 30) {
+          counter = 1;
+        } else {
+          counter++;
+        }
+      }, 2000);
+    }
+  }, []);
+
   return (
     <CollectionWrapper>
       <div className="container" data-aos="fade-up">
         <div style={{ display: 'inline-block', maxWidth: 768 }}>
           <MainImage src="images/TEXT_DUCKIE_COLLECTION.png" />
         </div>
-        <p className="sub-content">
+        <p className="sub-content duck-class">
           {isMobile ? (
             <>
               Dackie is on a mission to build the premier Web 3.0 brand together with our community. We're trying to
@@ -34,20 +53,20 @@ const Collection = () => {
       </div>
       <div className="collection-slider">
         <div data-aos="fade-up-right">
-          <MappingCollection>
-            {[...Array(100)].map((_, idx: number) => {
+          <MappingCollection className="slide">
+            {[...Array(25)].map((_, idx: number) => {
               return (
                 <div style={{}} key={idx}>
-                  <MainImage style={{ width: collectImgWidth }} src={duckieCollection} />
+                  <MainImage style={{ width: collectImgWidth, height: 'auto' }} src={duckieCollection} />
                 </div>
               );
             })}
           </MappingCollection>
-          <MappingCollection style={{ left: '-345px' }}>
-            {[...Array(100)].map((_, idx: number) => {
+          <MappingCollection style={{ left: '-345px' }} className="slide_1">
+            {[...Array(25)].map((_, idx: number) => {
               return (
                 <div style={{}} key={idx}>
-                  <MainImage style={{ width: collectImgWidth }} src={duckieCollection} />
+                  <MainImage style={{ width: collectImgWidth, height: 'auto' }} src={duckieCollection} />
                 </div>
               );
             })}
@@ -63,9 +82,8 @@ export default Collection;
 const CollectionWrapper = styled.section`
   .sub-content {
     white-space: pre-wrap;
-    line-height: 22px;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 24px;
   }
   .collection-slider {
     margin-top: 100px;
@@ -81,9 +99,9 @@ const CollectionWrapper = styled.section`
 
 const MappingCollection = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 30px;
   flex-wrap: nowrap;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   position: relative;
   left: -230px;
 `;

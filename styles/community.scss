@@ -1,0 +1,31 @@
+/* set up the slide */
+.slide {
+  display: flex;
+  animation: slide 30s linear infinite;
+}
+
+/* define the animation */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* set up the slide */
+.slide_1 {
+  display: flex;
+  animation: slide_1 30s linear infinite;
+}
+
+/* define the animation */
+@keyframes slide_1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

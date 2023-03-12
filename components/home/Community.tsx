@@ -2,7 +2,7 @@ import { DuckieMini, MainImage } from 'components/common';
 import React from 'react';
 import styled from 'styled-components';
 
-const landscapeImg = 'images/DUCKIE_3.png';
+const landscapeImg = 'images/DUCKIE_3.gif';
 
 const Community = () => {
   return (
@@ -17,23 +17,22 @@ const Community = () => {
         <div>
           <WrapperContent data-aos="fade-up">
             <div className="img-wrapper">
-              <MainImage style={{ objectFit: 'contain' }} src={landscapeImg} />
+              <MainImage style={{ objectFit: 'contain', borderRadius: 10 }} src={landscapeImg} />
             </div>
-            <div className="content">
+            <div className="content ">
               <ul>
-                <li>
-                  <strong>Dackity</strong> is a decentralized community governed by both NFT and non-NFT users who use
-                  and evaluate the products created by <strong>Dackiers</strong>.
+                <li className="duck-class">
+                  Dackity is a decentralized community governed by both NFT and non-NFT users who use and evaluate the
+                  products created by Dackiers.
                 </li>
-                <li>
-                  <strong>Dackiers</strong> will be divided into different tiers in Dackity, with higher tier{' '}
-                  <strong>Dackiers</strong>
-                  having more voting power.
+                <li className="duck-class">
+                  Dackiers will be divided into different tiers in Dackity, with higher tier Dackiers having more voting
+                  power.
                 </li>
-                <li>
-                  Each <strong>Dackier</strong> contributes to the functioning and growth of the community by providing
-                  their own value and receiving recognition from the <strong>Dackie community</strong>. This helps to
-                  develop the income and reputation of each <strong>Dackier</strong>.
+                <li className="duck-class">
+                  Each Dackier contributes to the functioning and growth of the community by providing their own value
+                  and receiving recognition from the Dackie community. This helps to develop the income and reputation
+                  of each Dackier.
                 </li>
               </ul>
             </div>
