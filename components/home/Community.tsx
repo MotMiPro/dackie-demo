@@ -1,10 +1,15 @@
+import { Carousel } from 'antd';
 import { DuckieMini, MainImage } from 'components/common';
-import React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 const landscapeImg = 'images/DUCKIE_3.gif';
 
 const Community = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const carouselRef = useRef<any>();
+
+  const NextArrowIcon = () => <MainImage style={{ width: 50 }} src="images/DUCKIE_NEXT.png" />;
   return (
     <CommunityWrapper id="about-us">
       <DuckieMini style={{ top: '50%', left: '-250px' }}>
@@ -20,21 +25,16 @@ const Community = () => {
               <MainImage style={{ objectFit: 'contain', borderRadius: 10 }} src={landscapeImg} />
             </div>
             <div className="content ">
-              <ul>
-                <li className="duck-class">
-                  Dackity is a decentralized community governed by both NFT and non-NFT users who use and evaluate the
-                  products created by Dackiers.
-                </li>
-                <li className="duck-class">
-                  Dackiers will be divided into different tiers in Dackity, with higher tier Dackiers having more voting
-                  power.
-                </li>
-                <li className="duck-class">
-                  Each Dackier contributes to the functioning and growth of the community by providing their own value
-                  and receiving recognition from the Dackie community. This helps to develop the income and reputation
-                  of each Dackier.
-                </li>
-              </ul>
+              <CarouselWrapper autoplay ref={carouselRef}>
+                {communitySlide.map((text: string, idx: number) => (
+                  <div key={idx} className="carousel-area">
+                    <p className="duck-class carousel-text">{text}</p>
+                  </div>
+                ))}
+              </CarouselWrapper>
+              <NextArrowWrapper onClick={() => carouselRef.current.next()}>
+                <NextArrowIcon />
+              </NextArrowWrapper>
             </div>
           </WrapperContent>
         </div>
@@ -44,6 +44,48 @@ const Community = () => {
 };
 
 export default Community;
+
+const communitySlide = [
+  'Dackity is a decentralized community governed by both NFT and non-NFT users who use and evaluate the products created by Dackiers.',
+  'Dackiers will be divided into different tiers in Dackity, with higher tier Dackiers having more votingpower.',
+  'Each Dackier contributes to the functioning and growth of the community by providing their own value and receiving recognition from the Dackie community. This helps to develop the income and reputation of each Dackier.',
+];
+
+const NextArrowWrapper = styled.div`
+  position: absolute;
+  bottom: 150px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  cursor: pointer;
+`;
+
+const CarouselWrapper = styled(Carousel)`
+  > .slick-dots li button {
+    background: transparent;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      height: 20px;
+      background-image: url('images/DUCKIE_1_EGG.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+  > .slick-dots li.slick-active button {
+    background: transparent;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      height: 30px;
+      background-image: url('images/DUCKIE_1.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+`;
 
 const CommunityWrapper = styled.section`
   padding: 0 0 100px 0;
@@ -78,16 +120,34 @@ const WrapperContent = styled.div`
   align-items: center;
   flex-wrap: wrap;
   .img-wrapper {
-    flex: 2;
   }
   .content {
-    flex: 1;
     padding: 25px 0;
+    max-width: 325px;
+    width: 100%;
+    position: relative;
+    height: 100%;
+    .slick-list {
+    }
+    .slick-slider {
+      display: flex;
+      flex-direction: column;
+      height: 455px;
+    }
+    ul.slick-dots {
+      bottom: 0 !important;
+    }
   }
-  li {
+  .carousel-area {
+    height: 160px;
+    line-height: 160px;
+  }
+  .carousel-text {
     font-size: 21px;
     line-height: 28px;
     font-weight: lighter;
+    color: white;
+    text-align: center;
   }
   @media screen and (max-width: 768px) {
     height: 100%;
@@ -95,7 +155,7 @@ const WrapperContent = styled.div`
       flex: unset;
       padding: 0 15px;
     }
-    li {
+    .carousel-text {
       font-size: 16px;
     }
   }
